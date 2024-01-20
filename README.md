@@ -47,3 +47,9 @@ jenkis:
 ![ayoub elm](https://github.com/Ayoubelmaghraoui/app-microservise-with-jenkis/assets/122055457/cbc53a2d-2e20-48a7-9b9e-3224b753451a)
 ![ayoub elm1](https://github.com/Ayoubelmaghraoui/app-microservise-with-jenkis/assets/122055457/023cbbec-2daf-4c5d-a43c-ebca774ea6aa)
 
+Important endpoints
+http://localhost:80 - Gateway
+http://localhost:8761 - Eureka Dashboard
+http://localhost:9000/hystrix - Hystrix Dashboard (Turbine stream link: http://turbine-stream-service:8080/turbine/turbine.stream)
+http://localhost:15672 - RabbitMq management (default login/password: guest/guest)
+
