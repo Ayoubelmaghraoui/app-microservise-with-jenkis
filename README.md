@@ -1,4 +1,4 @@
-2. Architecture Microservices
+ Architecture Microservices
 Architecture
 L'architecture microservices consiste en un ensemble de services indépendants, déployés de manière isolée, et communiquant entre eux par des interfaces bien définies. Cela favorise la résilience et la facilité de mise à l'échelle.
 Description des services
@@ -6,6 +6,7 @@ Chaque service est dédié à une fonctionnalité spécifique de l'entreprise, a
 Account service
 Contient la logique générale de saisie et la validation : éléments de revenus/dépenses, paramètres d'épargne et de compte
 .
+
 Method	Path	Description	User authenticated	Available from UI
 GET	/accounts/{account}	Get specified account data		
 GET	/accounts/current	Get current account data	×	×
@@ -13,7 +14,9 @@ GET	/accounts/demo	Get demo account data (pre-filled incomes/expenses items, etc
 PUT	/accounts/current	Save current account data	×	×
 POST	/accounts/	Register new account		×
 Statistics service
+
 Effectue des calculs sur les principaux paramètres statistiques et capture des séries chronologiques pour chaque compte. Le point de données contient des valeurs normalisées par rapport à la devise de base et à la période. Ces données sont utilisées pour suivre la dynamique des flux de trésorerie pendant la durée de vie du compte.
+
 Method	Path	Description	User authenticated	Available from UI
 GET	/statistics/{account}	Get specified account statistics		
 GET	/statistics/current	Get current account statistics	×	×
@@ -21,10 +24,14 @@ GET	/statistics/demo	Get demo account statistics		×
 PUT	/statistics/{account}	Create or update time series datapoint for specified account		
 Notification service
 Stocke les informations de contact de l'utilisateur et les paramètres de notification (rappels, fréquence de sauvegarde, etc.). Le travailleur planifié collecte les informations requises auprès d'autres services et envoie des messages électroniques aux clients abonnés.
+
+
 Method	Path	Description	User authenticated	Available from UI	
 GET	/notifications/settings/current	Get current account notification settings	×	×	
 PUT	/notifications/settings/current	Save current account notification settings	×	×	
+
 Notes
+
 • Chaque microservice possède sa propre base de données, il n'y a donc aucun moyen de contourner l'API et d'accéder directement aux données de persistance.
 • MongoDB est utilisé comme base de données principale pour chacun des services.
 • Tous les services communiquent entre eux via l'API Rest
